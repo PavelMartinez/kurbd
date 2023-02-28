@@ -7,7 +7,7 @@ from query.routes import blueprint_query
 from access import login_required
 from edit.route import blueprint_edit
 from market.route import blueprint_market
-from orders.route import blueprint_orders
+
 from add_film_session.route import blueprint_add
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_edit, url_prefix='/edit')
 app.register_blueprint(blueprint_market, url_prefix='/market')
-app.register_blueprint(blueprint_orders, url_prefix='/orders')
+
 app.register_blueprint(blueprint_add, url_prefix='/add')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
