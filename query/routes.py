@@ -53,5 +53,9 @@ def query2():
         else:
             return render_template('not_found.html')
     elif request.method == 'GET':
-        return render_template('query.html', ph_title="Введите год", title_name='Query4')
+        return render_template('query.html', ph_title="Введите год", title_name='Query2')
 
+
+"""
+
+"""
