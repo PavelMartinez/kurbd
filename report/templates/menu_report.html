@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='menu_query/style.css') }}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Menu report</title>
+</head>
+<style>
+    .menu_items {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: #f1e3c9;
+    }
+
+    .menu_item {
+        box-sizing: border-box;
+        margin-left: 40px;
+        padding: 10px 40px;
+        border-radius: 10px;
+        color: inherit;
+        text-decoration: none;
+        background-color: rgba(69,70,79, 0.5);
+        font-size: 25px;
+    }
+
+    .menushka {
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title {
+        font-weight: 700;
+        font-size: 25px;
+        text-align: left;
+    }
+
+</style>
+<body>
+    <div class="wrapper">
+        <section class="header">
+            <div class="menu">
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a href={{url_for('menu_choice')}} class="menu__link">Вернуться в меню</a></li>
+                        <li><a href={{url_for('exit_func')}} class="menu__link">Выйти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="body">
+            <div class="menushka">
+                {% for report in report_list %}
+                    <div class="menu_items">
+                        <form action='' method = 'POST'>
+                            <label for="create_rep" class="title">{{report['rep_name']}}</label>
+                            <input type="submit" name="create_rep" id="create_rep" value="Создать отчёт" class="menu_item">
+                            <input type="submit" name="view_rep" id="view_rep" value="Просмотреть отчёт" class="menu_item">
+                            <input type="hidden" name="rep_id" value="{{report['rep_id']}}">
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+<!--Лэйбл нужен только для первой кнопки. Позволяет пристроить поясняющий тест перед кнопкой ввода-->
+<!--Айди - это параметр который связывает поле ввода с тэгом лэйбл.-->

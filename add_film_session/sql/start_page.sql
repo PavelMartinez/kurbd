@@ -1,0 +1,1 @@
+select idFilm, Country from film;

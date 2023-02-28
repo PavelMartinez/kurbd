@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='not_found/style.css')}}"/>
+    <title>Result</title>
+</head>
+<body>
+    <div class="wrapper">
+         <section class="header">
+            <div class="menu">
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a href={{url_for('bp_query.menu_queries')}} class="menu__link">Вернуться в меню запросов</a></li>
+                        <li><a href={{url_for('exit_func')}} class="menu__link">Выйти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="body">
+            <h1 class="title">Ошибка, ничего не найдено!</h1>
+        </section>
+    </div>
+</body>
+</html>

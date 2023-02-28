@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Изменить фильм</title>
+</head>
+<style>
+  .named_list{
+    font-size: 12pt;
+    color: green;
+    display: inline-block;
+    width: 300px;
+    text-align: left;
+  }
+</style>
+<body>
+<h2 align="center">Введите изменение в описание фильма</h2>
+<center>
+  {% for msg in get_flashed_messages() %}
+    <div class="flash">{{msg}}</div>
+  {% endfor %}
+  <br><br>
+  <form action="" method="POST">
+    <label for="prod_name" class="named_list">Название фильма:</label>
+    <input type="text" id="prod_name" name="prod_name" value="{{product['Country']}}">
+    <br>
+    <label for="prod_price" class="named_list">Режиссер:</label>
+    <input type="text" id="prod_price" name="prod_price" value="{{product['Director']}}">
+    <br>
+    <label for="prod_measure" class="named_list">Год выпуска:</label>
+    <input type="text" id="prod_measure" name="prod_measure" value="{{product['Year']}}">
+    <br>
+    <label for="prod_study" class="named_list">Студия:</label>
+    <input type="text" id="prod_study" name="prod_study" value="{{product['Study']}}">
+    <br>
+    <label for="prod_lenght" class="named_list">Продолжительность:</label>
+    <input type="text" id="prod_lenght" name="prod_lenght" value="{{product['Lenght']}}">
+    <br>
+    <input type="hidden" name="prod_id" value="{{product['idFilm']}}">
+    <button type="submit" name="action" value="update_prod">Отправить</button>
+  </form>
+  <br><br>
+  <a href={{url_for('bp_edit.show_all_products')}} class="menu__link">Вернуться в меню редактирования</a>
+</center>
+</body>
+</html>

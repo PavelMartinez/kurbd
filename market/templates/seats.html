@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Cinema Seats</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.screen {
+			margin-bottom: 20px;
+			height: 5px;
+			width: 300px;
+			background-color: black;
+		}
+
+		.row {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.row-number {
+			font-size: 24px;
+			font-weight: bold;
+			margin-right: 10px;
+		}
+
+		.seat {
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			border: 2px solid black;
+			border-radius: 10px;
+			background-color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: bold;
+			color: black;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.seat-number {
+			font-size: 16px;
+			font-weight: normal;
+			margin-top: 5px;
+		}
+
+		.seat:hover {
+			background-color: green;
+			color: white;
+			transform: scale(1.1);
+		}
+
+		.seat1 {
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			border: 2px solid black;
+			border-radius: 10px;
+			background-color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: bold;
+			color: black;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.seat1:hover {
+			background-color: #ff0000;
+			color: white;
+			transform: scale(1.1);
+		}
+	</style>
+</head>
+<body>
+
+	<div class="screen"></div>
+	<h1>Выберите место</h1>
+	  {% for line in seats_id %}
+		<div class="row">
+
+			{% for seater in line %}
+				<div class="row-number"></div>
+			  		<form action="" method="POST">
+						<input type="hidden" name="tt_id" value="{{tt_id}}">
+						<input type="hidden" name="seat_line" value="{{seater.seat_line}}">
+						<input type="hidden" name="seat_number" value="{{seater.seat_number}}">
+				  		<input type="hidden" name="price" value="{{seater.price}}">
+						{% if seater.flag %}
+							<button type="button" name="action" value="update_seat" disabled="disabled" class="seat1">{{seater.price}}руб.<span class="seat-number"></span></button>
+						{% else %}
+				  			<button type="submit" name="action" value="update_seat" class="seat">{{seater.price}}руб.<span class="seat-number"></span></button>
+						{% endif %}
+
+
+			  		</form>
+			{% endfor %}
+		</div>
+	  {% endfor %}
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,1 @@
+insert into film (Country, Director, `Year`, Study, Lenght) values ('$prod_name','$prod_price', '$prod_measure', '$prod_study', '$prod_lenght');

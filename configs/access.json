@@ -1,0 +1,26 @@
+{
+  "worker": [
+    "bp_query",
+    "bp_orders",
+    "bp_edit",
+    "bp_add"
+  ],
+  "analyst": [
+    "bp_report",
+    "bp_query"
+  ],
+  "director": [
+    "bp_report"
+  ],
+  "external": [
+    "bp_market"
+  ],
+  "admin": [
+    "bp_query",
+    "bp_report",
+    "bp_market",
+    "bp_edit",
+    "bp_orders",
+    "bp_add"
+  ]
+}

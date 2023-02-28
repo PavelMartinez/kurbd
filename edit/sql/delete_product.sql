@@ -1,0 +1,1 @@
+delete from film where idFilm='$prod_id';
