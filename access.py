@@ -54,3 +54,38 @@ def external_required(f):
             return f(*args, **kwargs)
         return render_template('exceptions/external_only.html')
     return wrapper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+
+            В этом файле храним все декораторы для аутентификации и проверки есть ли доступ у пользователя к данному разделу сайта
+
+"""

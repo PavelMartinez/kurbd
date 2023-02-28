@@ -1,7 +1,7 @@
 {
   "worker": [
     "bp_query",
-    "bp_orders",
+    "bp_add",
     "bp_edit",
     "bp_add"
   ],
@@ -20,7 +20,6 @@
     "bp_report",
     "bp_market",
     "bp_edit",
-    "bp_orders",
     "bp_add"
   ]
 }

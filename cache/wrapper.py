@@ -22,3 +22,26 @@ def fetch_from_cache(cache_name: str, cache_config: dict):
 			return response #Возвращаем результат из БД
 		return wrapper
 	return wrapper_func
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+        Это функция обертки(декоратор) тоже для redis - сюда особо тоже не лезем
+"""

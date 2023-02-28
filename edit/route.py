@@ -86,26 +86,42 @@ def insert_prod():
     return render_template('product_update.html', product={})
 
 
-# @blueprint_edit.route('/insert_prod', methods=['POST'])
-# @group_required
-# def inserted_product():
-#     prod_name = request.form.get('prod_name')
-#     prod_price = request.form.get('prod_price')
-#     prod_measure = request.form.get('prod_measure')
-#     if not prod_name:
-#         flash("Вы не ввели название продукта!")
-#     if not prod_price:
-#         flash("Вы не ввели цену продукта!")
-#     if not prod_measure:
-#         flash("Вы не ввели единицу измерения продукта!")
-#     if prod_name and prod_price and prod_measure:
-#         _sql = provider.get('insert_product.sql', prod_name=prod_name, prod_price=prod_price, prod_measure=prod_measure)
-#         result = insert(current_app.config['db_config'], _sql)
-#         print('result2 = ', result)
-#         message = 'Упс! Что-то не так!'
-#         if result:
-#             message = f'Товар {prod_name} добавлен в базу данных'
-#         return render_template('update_ok.html', message=message)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+        Блупринтик делает возможным редактирование информации о фильмах
+        Добавить новый фильм, удалить, редактировать, все это делается тут
+        show_all_products - тупо выводим все фильммы которые есть у нас сейчас и еще выводим кнопки для редактирования удаления и добавления
+        edit_product - как некая функция распределения задач - если тебе нужно редактировать фильм, эта функция отправить тебя в функцию редактирования, если удалить, то в удаление
+        Собственно по названиям остальных функций можно понять что они делают
+"""

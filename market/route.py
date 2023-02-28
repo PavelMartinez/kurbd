@@ -92,13 +92,6 @@ def order_index():
 
         return redirect(url_for('bp_market.order_index'))
 
-def delete_from_basket(prod_id: str):
-    curr_basket = session.get('basket', {})
-    # print("curr_basket1 : ", curr_basket)
-    curr_basket.pop(prod_id, 4000)
-    curr_basket = session.get('basket', {})
-    # print("curr_basket2 : ", curr_basket)
-    return True
 
 def add_to_basket(tt_id, seat_line, seat_number, item, price, ticket_id):
     curr_basket = session.get('basket', {})
@@ -148,3 +141,54 @@ def clear_basket():
     if 'basket' in session:
         session.pop('basket')
     return redirect(url_for('bp_market.order_index'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+            Сюда лезть страшно даже мне
+            Этот блупринт отвечает за основной бизнес процесс
+            Самая крутая и гордая функция тут это order_index
+            Она делает основную работу адрессовки между страницами и передачи информации
+            начиная с выбора фильма для просмотра и заканчивая добавлением в корзину ваших покупок
+            
+            add_to_basket - тупо функция добавления выбранного товара в карзину
+            save_order - функция изменяет в бд строку с информацией о купленном билете, пишет кто его купил.
+            clear_basket - тупо отчишает всю корзину 
+            
+"""
