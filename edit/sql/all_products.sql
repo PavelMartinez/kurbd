@@ -1,1 +1,0 @@
-select idFilm, Country from cinema.film;

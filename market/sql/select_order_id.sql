@@ -1,1 +1,0 @@
-Select max(id_N)  as max_id from lab1.note where N_client = '$user_id';

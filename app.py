@@ -5,10 +5,6 @@ from auth.routes import blueprint_auth
 from report.route import blueprint_report
 from query.routes import blueprint_query
 from access import login_required
-from edit.route import blueprint_edit
-from market.route import blueprint_market
-
-from add_film_session.route import blueprint_add
 
 app = Flask(__name__)
 app.secret_key = 'SuperKey'
@@ -16,14 +12,9 @@ app.secret_key = 'SuperKey'
 app.register_blueprint(blueprint_query, url_prefix='/zaproses')
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
-app.register_blueprint(blueprint_edit, url_prefix='/edit')
-app.register_blueprint(blueprint_market, url_prefix='/market')
-
-app.register_blueprint(blueprint_add, url_prefix='/add')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))
-app.config['cache_config'] = json.load(open('configs/cache.json'))
 
 @app.route('/')
 @login_required

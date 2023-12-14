@@ -1,1 +1,0 @@
-update film set Country='$prod_name', `Year`='$prod_measure', Director='$prod_price', Study = '$prod_study', Lenght = '$prod_lenght' where idFilm='$prod_id';

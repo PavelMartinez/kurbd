@@ -1,1 +1,0 @@
-insert lab1.note_note values(NULL, 0, '$prod_amount', '$order_id', '$prod_id');

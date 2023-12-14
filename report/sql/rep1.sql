@@ -1,1 +1,1 @@
-select finally_sum from money_report where `year` = '$in_year' and `month` = '$in_month';
+select * from report_money where `report_year` = '$in_year' and `report_month` = '$in_month';

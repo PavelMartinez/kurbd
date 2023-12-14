@@ -78,7 +78,7 @@ def view_rep1():
             _sql = provider.get('rep1.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             if product_result:
-                return render_template('result_rep1.html', schema=["Прибыль"], result=product_result, rep_month=rep_month, rep_year=rep_year)
+                return render_template('result_rep1.html', schema=schema, result=product_result, rep_month=rep_month, rep_year=rep_year)
             else:
                 return "Такой отчёт не был создан"
         else:

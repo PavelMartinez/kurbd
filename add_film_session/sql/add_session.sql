@@ -1,1 +1,0 @@
-insert into timetable (Date_show, Coefficient, Place_idPlace, Film_idFilm) values ('$date_id', '$coef', '$place_id', '$prod_id');
