@@ -1,0 +1,1 @@
+update ticket set `sell?`=1, user_id = '$user_id' where (idTicket = '$ticket_id')

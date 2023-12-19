@@ -80,7 +80,6 @@ def update(db_config:dict, _sql:str):
         result = cursor.execute(_sql)
     return result
 
-#добавить проверку, существует ли отчет в обработчике (select count(*) ...) если 0 то..
 
 
 

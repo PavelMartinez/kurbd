@@ -20,7 +20,17 @@
         </section>
         <section class="body">
             <form method="post" action="" class="search-form">
-                <input type="text" name="product_name" placeholder="{{ph_title}}" class="search-form__input">
+                {% if title_name == 'Query1' %}
+                <input type="text" name="year" placeholder="{{ph_title1}}" class="search-form__input">
+                <input type="text" name="month" placeholder="{{ph_title2}}" class="search-form__input">
+                {% elif title_name == 'Query2' %}
+                <input type="text" name="product_name" placeholder="{{ph_title1}}" class="search-form__input">
+                {% elif title_name == 'Query3' %}
+                <input type="text" name="product_name" placeholder="{{ph_title1}}" class="search-form__input">
+                {% elif title_name == 'Query4' %}
+                <input type="text" name="year" placeholder="{{ph_title1}}" class="search-form__input">
+                <input type="text" name="month" placeholder="{{ph_title2}}" class="search-form__input">
+                {%endif%}
                 <button type="submit" class="search-form__button"><img src='{{ url_for("static", filename="pictures/magnifier2.png") }}' alt="click"></button>
             </form>
         </section>

@@ -11,8 +11,8 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 
 report_list = [
-    {'rep_name':'Отчёт о выручке ', 'rep_id':'1'},
-    {'rep_name':'Отчёт о фильмах ', 'rep_id':'2'}
+    {'rep_name':'Выручка с фильмов', 'rep_id':'1'},
+    {'rep_name':'Выручка с залов', 'rep_id':'2'}
 ]
 
 
@@ -36,98 +36,110 @@ def start_report():
             url_rep = report_url[rep_id]['view_rep']
         print('url_rep = ', url_rep)
         return redirect(url_for(url_rep))
-    # из формы получает номер отчета и какую кнопку
 
 @blueprint_report.route('/create_rep1', methods=['GET', 'POST'])
 @group_required
 def create_rep1():
     if request.method == 'GET':
         print("GET_create")
-        return render_template('report_create.html', name_rep="выручке", title='Отчет 1')
+        return render_template('report_create.html', name_rep="выручке с фильма", title='Отчет 1')
     else:
         print(current_app.config['db_config'])
         print("POST_create")
-        rep_month = request.form.get('input_month')
-        rep_year = request.form.get('input_year')
+        try:
+            rep_month = int(request.form.get('input_month'))
+            rep_year = int(request.form.get('input_year'))
+        except ValueError:
+            return render_template('error.html', error="Параметры отчёта введены неверно! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
         print("Loading...")
-        if rep_year and rep_month:
+        if rep_year and rep_month and 2000 < rep_year <= 2023 and 0 < rep_month <= 12:
             _sql = provider.get('check_rep1.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             print(product_result)
             if (product_result[0][0] > 0):
-                return "Такой отчёт уже существует"
+                return render_template('error.html', error="Такой отчёт уже существует")
             else:
-                res = call_proc(current_app.config['db_config'], 'stonks_report', rep_month, rep_year)
+                res = call_proc(current_app.config['db_config'], 'stonks_report', rep_year, rep_month)
                 print('res=', res)
-                return render_template('report_created.html', rep_month=rep_month, rep_year=rep_year, name_rep="выручке")
+                return render_template('report_created.html', rep_month=rep_month, rep_year=rep_year, name_rep="выручке с фильма")
         else:
-            return "Repeat input"
+            return render_template('error.html', error="Вы допустили ошибку! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
 
 
 @blueprint_report.route('/view_rep1', methods=['GET', 'POST'])
 @group_required
 def view_rep1():
     if request.method == 'GET':
-        return render_template('view_rep.html', name_rep='выручке')
+        return render_template('view_rep.html', name_rep='выручке с фильма')
     else:
-        rep_month = request.form.get('input_month')
-        rep_year = request.form.get('input_year')
-        print(rep_month)
-        print(rep_year)
-        if rep_year and rep_month:
+        try:
+            rep_month = int(request.form.get('input_month'))
+            rep_year = int(request.form.get('input_year'))
+        except ValueError:
+            return render_template('error.html', error="Параметры запроса введены неверно! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
+        if rep_year and rep_month and 2000 < rep_year <= 2023 and 0 < rep_month <= 12:
             _sql = provider.get('rep1.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             if product_result:
                 return render_template('result_rep1.html', schema=schema, result=product_result, rep_month=rep_month, rep_year=rep_year)
             else:
-                return "Такой отчёт не был создан"
+                return render_template('error.html', error="Такой отчёт не был создан")
         else:
-            return "Repeat input"
+            return render_template('error.html', error="Вы допустили ошибку! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
 
 @blueprint_report.route('/create_rep2', methods=['GET', 'POST'])
 @group_required
 def create_rep2():
     if request.method == 'GET':
         print("GET_create")
-        return render_template('report_create.html', name_rep="популярности фильмов", title='Отчет 2')
+        return render_template('report_create.html', name_rep="выручке с зала", title='Отчет 2')
     else:
-        print(current_app.config['db_config'])
-        print("POST_create")
-        rep_month = request.form.get('input_month')
-        rep_year = request.form.get('input_year')
-        print("Loading...")
-        if rep_year and rep_month:
+        try:
+            rep_month = int(request.form.get('input_month'))
+            rep_year = int(request.form.get('input_year'))
+        except ValueError:
+            return render_template('error.html', error="Параметры запроса введены неверно! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
+        if rep_year and rep_month and 2000 < rep_year <= 2023 and 0 < rep_month <= 12:
             _sql = provider.get('check_rep2.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             print(product_result)
             if (product_result[0][0] > 0):
-                return "Такой отчёт уже существует"
+                return render_template('error.html', error="Такой отчёт уже существует")
             else:
-                res = call_proc(current_app.config['db_config'], 'movie_report', rep_month, rep_year)
+                res = call_proc(current_app.config['db_config'], 'places_report', rep_year, rep_month)
                 print('res=', res)
-                return render_template('report_created.html', rep_month=rep_month, rep_year=rep_year, name_rep="популярности фильма")
+                return render_template('report_created.html', rep_month=rep_month, rep_year=rep_year, name_rep="выручке с зала")
         else:
-            return "Repeat input"
+            return render_template('error.html', error="Вы допустили ошибку! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
 
 @blueprint_report.route('/view_rep2', methods=['GET', 'POST'])
 @group_required
 def view_rep2():
     if request.method == 'GET':
-        return render_template('view_rep.html', name_rep="популярности фильма")
+        return render_template('view_rep.html', name_rep="выручке с зала")
     else:
-        rep_month = request.form.get('input_month')
-        rep_year = request.form.get('input_year')
-        print(rep_month)
-        print(rep_year)
-        if rep_year and rep_month:
+        try:
+            rep_month = int(request.form.get('input_month'))
+            rep_year = int(request.form.get('input_year'))
+        except ValueError:
+            return render_template('error.html', error="Параметры запроса введены неверно! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
+        if rep_year and rep_month and 2000 < rep_year <= 2023 and 0 < rep_month <= 12:
             _sql = provider.get('rep2.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             if product_result:
-                return render_template('result_rep1.html', schema=["Название", "Кол-во"], result=product_result, rep_month=rep_month, rep_year=rep_year)
+                return render_template('result_rep1.html', schema=schema, result=product_result, rep_month=rep_month, rep_year=rep_year)
             else:
-                return "Такой отчёт не был создан"
+                return render_template('error.html', error="Такой отчёт не был создан")
         else:
-            return "Repeat input"
+            return render_template('error.html', error="Вы допустили ошибку! "
+                                                           "Введите год в формате XXXX, месяц в формате XX")
 
 
 

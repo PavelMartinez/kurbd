@@ -1,1 +1,1 @@
-select count(*) from film_report where `year` = '$in_year' and `month` = '$in_month';
+select count(*) from report_place where `report_year` = '$in_year' and `report_month` = '$in_month';

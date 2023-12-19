@@ -17,6 +17,7 @@ class UseDatabase:
         try:
             self.conn = connect(**self.config)
             self.cursor = self.conn.cursor()
+            self.conn.begin()
             return self.cursor
         except OperationalError as err:
             if err.args[0] == 1045:
