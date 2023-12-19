@@ -4,6 +4,7 @@ from flask import Flask, render_template, session
 from auth.routes import blueprint_auth
 from report.route import blueprint_report
 from query.routes import blueprint_query
+from market.route import blueprint_market
 from access import login_required
 
 app = Flask(__name__)
@@ -12,9 +13,11 @@ app.secret_key = 'SuperKey'
 app.register_blueprint(blueprint_query, url_prefix='/zaproses')
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
+app.register_blueprint(blueprint_market, url_prefix='/market')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))
+app.config['cache_config'] = json.load(open('configs/cache.json'))
 
 @app.route('/')
 @login_required
